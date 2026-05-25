@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 
+import Catalog from "./books/Catalog.jsx";
 import Layout from "./layout/Layout.jsx";
 import Error404 from "./Error404";
 
@@ -13,8 +14,8 @@ export default function App() {
     <>
       <Routes>
         <Route element={<Layout />}>
-          {/*<Route index element={<Catalog />} />*/}
-          <Route path="" />
+          <Route index element={<Catalog />} />
+          <Route path="/books" element={<Catalog />} />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>
