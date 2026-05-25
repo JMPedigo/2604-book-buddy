@@ -6,7 +6,7 @@ export default function Navbar() {
       <p>Book Buddy</p>
       <nav>
         <p>Books</p>
-        <p>Log in</p>
+        <p>Login/Logout</p>
       </nav>
     </header>
   );
