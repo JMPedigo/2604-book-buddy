@@ -1,3 +1,13 @@
+/** Navbar with site navigation links */
 export default function Navbar() {
-  return <div>Navbar</div>;
+  return (
+    <header>
+      <img src="../../example.png" alt="A stack of books." />
+      <p>Book Buddy</p>
+      <nav>
+        <p>Books</p>
+        <p>Log in</p>
+      </nav>
+    </header>
+  );
 }
