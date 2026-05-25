@@ -10,7 +10,7 @@ export default function Navbar() {
       <p>Book Buddy</p>
       <nav>
         <p>Books</p>
-        <p>Login/Logout</p>
+        <p>Login</p>
       </nav>
     </header>
   );
