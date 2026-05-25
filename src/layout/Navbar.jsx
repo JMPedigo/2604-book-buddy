@@ -2,7 +2,11 @@
 export default function Navbar() {
   return (
     <header>
-      <img src="../../example.png" alt="A stack of books." />
+      <img
+        src="../../public/books.png"
+        alt="A stack of books."
+        className="navImage"
+      />
       <p>Book Buddy</p>
       <nav>
         <p>Books</p>
