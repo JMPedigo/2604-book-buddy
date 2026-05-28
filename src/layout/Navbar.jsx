@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 /** Navbar with site navigation links */
 export default function Navbar() {
   return (
@@ -7,10 +9,10 @@ export default function Navbar() {
         alt="A stack of books."
         className="navImage"
       />
-      <p>Book Buddy</p>
+      <NavLink className="navLink">Book Buddy</NavLink>
       <nav>
-        <p>Books</p>
-        <p>Login</p>
+        <NavLink className="navLink">Books</NavLink>
+        <NavLink className="navLink">Login</NavLink>
       </nav>
     </header>
   );

@@ -15,8 +15,10 @@ export default function BookDetails() {
     };
     syncBook();
   }, [id]);
+
   return (
     <article>
+      <img src="/books.png" alt="A stack of books." className="navImage" />
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       <p>{book.description}</p>

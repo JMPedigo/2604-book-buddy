@@ -20,6 +20,14 @@ header nav {
   width: 3rem;
 }
 
+.navLink {
+  color: lightblue;
+}
+
+.bookLink {
+  color: lightblue;
+}
+
 a {
   color: rgb(3, 3, 3);
   text-decoration: none;
