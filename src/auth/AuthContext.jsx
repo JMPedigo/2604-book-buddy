@@ -1,10 +1,11 @@
-import { createContext, useContext, useState } from "react";
-
 /**
  * AuthContext manages the user's authentication state by storing a token,
  * It provides functions for the user to register, log in, and log out,
  * all of which update the token in state.
  */
+
+import { createContext, useContext, useState } from "react";
+
 const API = import.meta.env.VITE_API;
 
 const AuthContext = createContext();
@@ -13,7 +14,7 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState();
 
   const register = async (credentials) => {
-    const response = await fetch(API + "users/register", {
+    const response = await fetch(API + "/users/register", {
       method: "POST",
       headers: { "Content-Type": "application.json" },
       body: JSON.stringify(credentials),
