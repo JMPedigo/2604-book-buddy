@@ -12,10 +12,10 @@ export default function Login() {
   const tryLogin = async (formData) => {
     setError(null);
 
-    const username = formData.get("username");
+    const email = formData.get("email");
     const password = formData.get("password");
     try {
-      await login({ username, password });
+      await login({ email, password });
       navigate("/books");
     } catch (e) {
       setError(e.message);
@@ -28,7 +28,7 @@ export default function Login() {
       <form action={tryLogin}>
         <label>
           Email
-          <input type="email" required />
+          <input type="email" name="email" required />
         </label>
         <label>
           Password
