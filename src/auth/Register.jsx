@@ -31,11 +31,11 @@ export default function Register() {
       <form action={tryRegister}>
         <label>
           First Name
-          <input type="text" name="firstname" required />
+          <input type="text" name="firstname" />
         </label>
         <label>
           Last Name
-          <input type="text" name="lastname" required />
+          <input type="text" name="lastname" />
         </label>
         <label>
           Email
