@@ -1,23 +1,45 @@
 * {
-  background-color: black;
-  color: lightblue;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: gray;
+  color: black;
+}
+
+form,
+label,
+main {
+  display: grid;
+  gap: 0.5rem;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   margin: 0.5rem 0;
-  color: rgb(0, 0, 0);
 }
 
 header nav {
   display: flex;
-  gap: 1ch;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  gap: 1rem;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 1fr;
+  align-content: center;
 }
 
 .navImage {
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.mainLink {
+  color: teal;
+  text-decoration: underline;
 }
 
 .navLink {
