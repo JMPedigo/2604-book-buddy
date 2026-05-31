@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getBook } from "../api/books";
 import { reserveBook } from "../api/reservations";
 import { useAuth } from "../auth/AuthContext";
 /** I need a function to call BookDetails and grab id using useParams */
 export default function BookDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { token } = useAuth();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(null);
@@ -34,6 +35,7 @@ export default function BookDetails() {
       setIsReserving(true);
       await reserveBook(token, book.id);
       setBook({ ...book, available: false });
+      navigate("/account");
     } catch (e) {
       setReserveError(e.message);
     } finally {
