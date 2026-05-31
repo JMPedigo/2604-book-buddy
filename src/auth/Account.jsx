@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { returnBook } from "../api/reservations";
 import { getAccount } from "../api/users";
 import { useAuth } from "./AuthContext";
 
 export default function Account() {
+  const navigate = useNavigate();
   const { token } = useAuth();
   const [account, setAccount] = useState(null);
   const [error, setError] = useState(null);
@@ -37,6 +38,7 @@ export default function Account() {
           (reservation) => reservation.id !== reservationId,
         ),
       });
+      navigate("/books");
     } catch (e) {
       setError(e.message);
     } finally {
