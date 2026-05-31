@@ -16,7 +16,7 @@ export function CatalogListItem({ book }) {
     <li>
       <img src="/books.png" alt="A stack of books." className="navImage" />
       <h2>
-        <Link to={`/books/BookDetails/${book.id}`} className="bookLink">
+        <Link to={`/books/${book.id}`} className="bookLink">
           {book.title}
         </Link>
       </h2>

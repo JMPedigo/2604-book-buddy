@@ -6,15 +6,24 @@ import { getBook } from "../api/books";
 export default function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
-  const [error] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const syncBook = async () => {
-      const data = await getBook(id);
-      setBook(data);
+      try {
+        setError(null);
+        const data = await getBook(id);
+        if (!data) throw Error("Book not found.");
+        setBook(data);
+      } catch (e) {
+        setError(e.message);
+      }
     };
     syncBook();
   }, [id]);
+
+  if (error) return <p role="alert">{error}</p>;
+  if (!book) return <p>Loading book...</p>;
 
   return (
     <article>
@@ -22,7 +31,6 @@ export default function BookDetails() {
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       <p>{book.description}</p>
-      {error && <p role="alert">{error}</p>}
     </article>
   );
 }
