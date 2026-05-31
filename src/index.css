@@ -37,6 +37,11 @@ body {
   width: 2rem;
 }
 
+.bookCover {
+  max-width: 12rem;
+  width: 100%;
+}
+
 .mainLink {
   color: teal;
   text-decoration: underline;

@@ -27,7 +27,11 @@ export default function BookDetails() {
 
   return (
     <article>
-      <img src="/books.png" alt="A stack of books." className="navImage" />
+      <img
+        src={book.coverimage || "/books.png"}
+        alt={`Cover of ${book.title}`}
+        className="bookCover"
+      />
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       <p>{book.description}</p>
