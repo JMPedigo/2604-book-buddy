@@ -6,6 +6,7 @@ import Error404 from "./Error404";
 import BookDetails from "./books/BookDetails.jsx";
 import Register from "./auth/Register.jsx";
 import Login from "./auth/Login.jsx";
+import Account from "./auth/Account.jsx";
 
 /**
  * Book Buddy is a catalog of books, which users
@@ -21,6 +22,7 @@ export default function App() {
           <Route index element={<CatalogPage />} />
           <Route path="/books" element={<CatalogPage />} />
           <Route path="/books/:id" element={<BookDetails />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error404 />} />

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getBook } from "../api/books";
-import { reserveBook } from "../api/reservations";
 import { useAuth } from "../auth/AuthContext";
+import {}
 /** I need a function to call BookDetails and grab id using useParams */
 export default function BookDetails() {
   const { id } = useParams();

@@ -18,7 +18,13 @@ export default function Navbar() {
       </h1>
       <nav>
         {token ? (
-          <a onClick={() => logout()}>Logout</a>
+          <>
+            <NavLink to="/books">Books</NavLink>
+            <NavLink to="/account">Account</NavLink>
+            <button type="button" onClick={() => logout()}>
+              Logout
+            </button>
+          </>
         ) : (
           <>
             <NavLink to="/books">Books</NavLink>

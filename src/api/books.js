@@ -46,3 +46,14 @@ export async function searchBooks(searchBook) {
     return null;
   }
 }
+
+export async function getReservations() {
+  try {
+    const response = await fetch(API + "/reservations");
+    const result = await response.json();
+    return result;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
