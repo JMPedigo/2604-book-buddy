@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getBook } from "../api/books";
-
+import { reserveBook } from "../api/reservations";
+import { useAuth } from "../auth/AuthContext";
 /** I need a function to call BookDetails and grab id using useParams */
 export default function BookDetails() {
   const { id } = useParams();
+  const { token } = useAuth();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(null);
+  const [reserveError, setReserveError] = useState(null);
+  const [isReserving, setIsReserving] = useState(false);
 
   useEffect(() => {
     const syncBook = async () => {
@@ -22,18 +26,21 @@ export default function BookDetails() {
     syncBook();
   }, [id]);
 
-  if (error) return <p role="alert">{error}</p>;
-  if (!book) return <p>Loading book...</p>;
-
-  const reserveBook = (bookId) => {
-    const book = books.find((b) => b.id === bookId);
-    if (book && book.availability === "available") {
-      book.availability = "reserved";
-      setBooks([...books]);
-    } else {
-      setError("Book is already reserved");
+  const tryReserve = async () => {
+    try {
+      setReserveError(null);
+      setIsReserving(true);
+      await reserveBook(token, book.id);
+      setBook({ ...book, available: false });
+    } catch (e) {
+      setReserveError(e.message);
+    } finally {
+      setIsReserving(false);
     }
   };
+
+  if (error) return <p role="alert">{error}</p>;
+  if (!book) return <p>Loading book...</p>;
 
   return (
     <article>
@@ -45,8 +52,17 @@ export default function BookDetails() {
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       <p>{book.description}</p>
-      <button onSubmit={reserveBook}>Reserve</button>
-      {error && <p role="alert">Book is already reserved</p>}
+      {token && (
+        <button
+          type="button"
+          onClick={tryReserve}
+          disabled={isReserving || !book.available}
+        >
+          {isReserving ? "Reserving..." : "Reserve"}
+        </button>
+      )}
+      {!book.available && <p>This book is already reserved.</p>}
+      {reserveError && <p role="alert">{reserveError}</p>}
     </article>
   );
 }
