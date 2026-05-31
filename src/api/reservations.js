@@ -1,6 +1,5 @@
 const API = import.meta.env.VITE_API;
 
-/** Fetches an array of activities from the API */
 export async function reserveBook(token, bookId) {
   if (!token) {
     throw Error("You must be signed in to reserve this book.");
@@ -22,4 +21,22 @@ export async function reserveBook(token, bookId) {
   }
 
   return result;
+}
+
+export async function returnBook(token, reservationId) {
+  if (!token) {
+    throw Error("You must be signed in to return this book.");
+  }
+
+  const response = await fetch(`${API}/reservations/${reservationId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  if (!response.ok) {
+    const result = await response.json().catch(() => ({}));
+    throw Error(result.message || "Could not return this book.");
+  }
 }
