@@ -27,6 +27,8 @@ export default function BookDetails() {
   }, [id]);
 
   const tryReserve = async () => {
+    if (isReserving) return;
+
     try {
       setReserveError(null);
       setIsReserving(true);
