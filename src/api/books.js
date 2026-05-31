@@ -35,3 +35,14 @@ export async function getCoverImage(coverimage) {
     return null;
   }
 }
+
+export async function searchBooks(searchBook) {
+  try {
+    const response = await fetch(`${API}/books?title=${searchBook}`);
+    const result = await response.json();
+    return result;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
