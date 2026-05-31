@@ -23,37 +23,3 @@ export async function getBook(id) {
     return null;
   }
 }
-
-/** I need to fetch cover images from the API to attach to CatalogListItem*/
-export async function getCoverImage(coverimage) {
-  try {
-    const response = await fetch(`${API}/books/${coverimage}`);
-    const result = await response.json();
-    return result;
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
-}
-
-export async function searchBooks(searchBook) {
-  try {
-    const response = await fetch(`${API}/books?title=${searchBook}`);
-    const result = await response.json();
-    return result;
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
-}
-
-export async function getReservations() {
-  try {
-    const response = await fetch(API + "/reservations");
-    const result = await response.json();
-    return result;
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
-}
