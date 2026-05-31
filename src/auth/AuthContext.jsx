@@ -11,7 +11,7 @@ const API = import.meta.env.VITE_API;
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
 
   const register = async (credentials) => {
     const response = await fetch(API + "/users/register", {
@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
     if (!response.ok) {
       throw Error(result.message || "Registration failed. Please try again.");
     }
+    localStorage.setItem("token", result.token);
     setToken(result.token);
   };
 
@@ -38,10 +39,14 @@ export function AuthProvider({ children }) {
     if (!response.ok) {
       throw Error(result.message || "Login failed. Please try again.");
     }
+    localStorage.setItem("token", result.token);
     setToken(result.token);
   };
 
-  const logout = () => setToken(null);
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+  };
 
   const value = { token, register, login, logout };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
