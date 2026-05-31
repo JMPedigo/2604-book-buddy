@@ -25,6 +25,16 @@ export default function BookDetails() {
   if (error) return <p role="alert">{error}</p>;
   if (!book) return <p>Loading book...</p>;
 
+  const reserveBook = (bookId) => {
+    const book = books.find((b) => b.id === bookId);
+    if (book && book.availability === "available") {
+      book.availability = "reserved";
+      setBooks([...books]);
+    } else {
+      setError("Book is already reserved");
+    }
+  };
+
   return (
     <article>
       <img
@@ -35,6 +45,8 @@ export default function BookDetails() {
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       <p>{book.description}</p>
+      <button onSubmit={reserveBook}>Reserve</button>
+      {error && <p role="alert">Book is already reserved</p>}
     </article>
   );
 }
