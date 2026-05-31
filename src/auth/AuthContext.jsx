@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
     });
     const result = await response.json();
     if (!response.ok) {
-      throw Error(result.message);
+      throw Error(result.message || "Registration failed. Please try again.");
     }
     setToken(result.token);
   };
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
     });
     const result = await response.json();
     if (!response.ok) {
-      throw Error(result.message);
+      throw Error(result.message || "Login failed. Please try again.");
     }
     setToken(result.token);
   };

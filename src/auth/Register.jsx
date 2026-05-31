@@ -27,7 +27,7 @@ export default function Register() {
       await register({ firstname, lastname, email, password });
       navigate("/books");
     } catch (e) {
-      setError(e.message);
+      setError(e.message || "Registration failed. Try a different email.");
     } finally {
       setIsSubmitting(false);
     }
@@ -53,7 +53,7 @@ export default function Register() {
           Password
           <input type="password" name="password" required />
         </label>
-        <button disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Registering..." : "Register"}
         </button>
         {error && <p role="alert">{error}</p>}
