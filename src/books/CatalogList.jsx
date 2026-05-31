@@ -14,7 +14,11 @@ export default function CatalogList({ books }) {
 export function CatalogListItem({ book }) {
   return (
     <li>
-      <img src="/books.png" alt="A stack of books." className="navImage" />
+      <img
+        src={book.coverimage || "/books.png"}
+        alt={`Cover of ${book.title}`}
+        className="bookCover"
+      />
       <h2>
         <Link to={`/books/${book.id}`} className="bookLink">
           {book.title}
