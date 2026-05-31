@@ -9,9 +9,11 @@ export default function Login() {
 
   const [error, setError] = useState(null);
 
-  const tryLogin = async (formData) => {
+  const tryLogin = async (event) => {
+    event.preventDefault();
     setError(null);
 
+    const formData = new FormData(event.target);
     const email = formData.get("email");
     const password = formData.get("password");
     try {
@@ -25,7 +27,7 @@ export default function Login() {
   return (
     <>
       <h1>Log in to your account</h1>
-      <form action={tryLogin}>
+      <form onSubmit={tryLogin}>
         <label>
           Email
           <input type="email" name="email" required />

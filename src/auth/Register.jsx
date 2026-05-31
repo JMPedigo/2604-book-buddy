@@ -8,10 +8,16 @@ export default function Register() {
   const { register } = useAuth();
 
   const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const tryRegister = async (formData) => {
+  const tryRegister = async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
     setError(null);
+    setIsSubmitting(true);
 
+    const formData = new FormData(event.target);
     const firstname = formData.get("firstname");
     const lastname = formData.get("lastname");
     const email = formData.get("email");
@@ -22,13 +28,15 @@ export default function Register() {
       navigate("/books");
     } catch (e) {
       setError(e.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <>
       <h1>Register for an account</h1>
-      <form action={tryRegister}>
+      <form onSubmit={tryRegister}>
         <label>
           First Name
           <input type="text" name="firstname" />
@@ -45,7 +53,9 @@ export default function Register() {
           Password
           <input type="password" name="password" required />
         </label>
-        <button>Register</button>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? "Registering..." : "Register"}
+        </button>
         {error && <p role="alert">{error}</p>}
       </form>
       <Link to="/login">Already have an account? Log in here.</Link>
