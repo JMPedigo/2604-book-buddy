@@ -1,67 +1,240 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  background-color: gray;
-  color: black;
 }
 
-form,
-label,
-main {
-  display: grid;
-  gap: 0.5rem;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
-}
-
-header nav {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
-  gap: 1rem;
+html {
+  background: #eef2f5;
 }
 
 body {
-  display: grid;
-  grid-template-rows: 1fr;
-  align-content: center;
-}
-
-.navImage {
-  height: 2rem;
-  width: 2rem;
-}
-
-.bookCover {
-  max-width: 12rem;
-  width: 100%;
-}
-
-.mainLink {
-  color: teal;
-  text-decoration: underline;
-}
-
-.navLink {
-  color: lightblue;
-}
-
-.bookLink {
-  color: lightblue;
+  margin: 0;
+  min-width: 320px;
+  color: #1f2933;
+  background: #eef2f5;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
 }
 
 a {
-  color: rgb(3, 3, 3);
+  color: #16606f;
+  font-weight: 650;
   text-decoration: none;
 }
 
 a:hover {
-  cursor: pointer;
+  color: #0e7490;
   text-decoration: underline;
-  color: aqua;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  width: fit-content;
+  min-height: 2.5rem;
+  border: 0;
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.95rem;
+  color: #ffffff;
+  background: #1f6f5f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #18584c;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  background: #ffffff;
+  border-bottom: 1px solid #d8e1e8;
+  box-shadow: 0 0.15rem 0.75rem rgb(31 41 51 / 8%);
+}
+
+header h1 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+header nav a {
+  padding: 0.45rem 0.2rem;
+}
+
+main {
+  display: grid;
+  gap: 1.5rem;
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+section,
+article {
+  display: grid;
+  gap: 1rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+main > h1,
+article > h1 {
+  color: #243b53;
+}
+
+form {
+  display: grid;
+  gap: 0.85rem;
+  width: min(100%, 34rem);
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #d8e1e8;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.35rem 1rem rgb(31 41 51 / 7%);
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #bcccdc;
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  background: #ffffff;
+  color: #1f2933;
+}
+
+input:focus {
+  outline: 3px solid #b8e3ea;
+  border-color: #16849a;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #d8e1e8;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.35rem 1rem rgb(31 41 51 / 7%);
+}
+
+li p {
+  color: #52606d;
+}
+
+.navImage {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.bookCover {
+  width: min(100%, 12rem);
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  border: 1px solid #d8e1e8;
+  background: #f8fafc;
+}
+
+article .bookCover {
+  width: min(100%, 16rem);
+}
+
+.mainLink {
+  color: #1f6f5f;
+}
+
+.bookLink {
+  color: #243b53;
+}
+
+[role="alert"] {
+  color: #9f1d35;
+  font-weight: 700;
+}
+
+@media (min-width: 760px) {
+  article {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+  }
+
+  article .bookCover {
+    grid-row: span 6;
+  }
+
+  form:has(#searchBook) {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    width: 100%;
+  }
+
+  form:has(#searchBook) label {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  header nav {
+    justify-content: flex-start;
+  }
+
+  main {
+    width: min(100% - 1rem, 1120px);
+    padding-top: 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
 }
