@@ -143,7 +143,6 @@ input:focus {
 
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -152,8 +151,8 @@ ul {
 
 li {
   display: grid;
-  align-content: start;
   gap: 0.75rem;
+  align-items: start;
   padding: 1rem;
   background: #ffffff;
   border: 1px solid #d8e1e8;
@@ -204,8 +203,19 @@ article .bookCover {
     align-items: start;
   }
 
-  article .bookCover {
+  li {
+    grid-template-columns: 11rem 1fr;
+    column-gap: 1.5rem;
+  }
+
+  article .bookCover,
+  li .bookCover {
     grid-row: span 6;
+  }
+
+  li .bookCover {
+    width: 10rem;
+    justify-self: center;
   }
 
   form:has(#searchBook) {
